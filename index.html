@@ -46,14 +46,14 @@
 
     function gtag_report_conversion(url) {
       var callback = function () {
-        if (typeof url !== "undefined") {
+        if (typeof(url) != "undefined") {
           window.location = url;
         }
       };
-      gtag("event", "conversion", {
-        send_to: "AW-18029821037",
+      gtag('event', 'conversion', {
+        send_to: 'AW-18029821037/OLULCJPot4wcEO34pJVD',
         value: 1.0,
-        currency: "CLP",
+        currency: 'CLP',
         event_callback: callback
       });
       return false;
@@ -155,7 +155,6 @@
           <p>Asesoría personalizada para elegir el plan de ambulancia privada ideal para tu familia. Habla directo con la ejecutiva, sin formularios, sin esperas.</p>
           <div class="trust-pills">
             <span class="pill">✓ Más de 40 años</span>
-            <span class="pill">✓ 3.000+ familias protegidas</span>
             <span class="pill">✓ Cobertura 24/7</span>
           </div>
         </div>
@@ -303,18 +302,6 @@
             </div>
           </article>
 
-          <article class="card reveal">
-            <img src="https://lirp.cdn-website.com/f46ab2ab/dms3rep/multi/opt/cropped_image_4-9e97eec3-1920w.jpg" alt="Sistema de triage médico – evaluación de urgencia telefónica" loading="lazy" width="380" height="190" />
-            <div class="card-body">
-              <h3>Sistema de Triage</h3>
-              <p>Evaluación clínica inicial para priorizar la atención según riesgo y activar la ambulancia privada solo cuando es necesario.</p>
-              <details>
-                <summary>Ver detalles del servicio</summary>
-                <div class="details-content">Desde la primera llamada se evalúan síntomas y nivel de urgencia para activar el rescate médico adecuado con la unidad coronaria móvil en el menor tiempo posible.</div>
-              </details>
-              <a class="btn btn-wa btn-full" href="https://api.whatsapp.com/send?phone=56983589813&text=Hola%2C%20quiero%20entender%20c%C3%B3mo%20funciona%20el%20Triage%20y%20qu%C3%A9%20plan%20me%20conviene.%20%C2%BFMe%20ayudan%3F" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> Hablar con ejecutiva</a>
-            </div>
-          </article>
         </div>
       </div>
     </section>
@@ -511,20 +498,36 @@
     function bindConversionTracking() {
       const contactLinks = document.querySelectorAll('a[href^="tel:"], a[href*="api.whatsapp.com/send"]');
       contactLinks.forEach((link) => {
-        link.addEventListener("click", () => {
+        link.addEventListener("click", (event) => {
           const href = link.getAttribute("href") || "";
           const channel = href.startsWith("tel:") ? "call" : "whatsapp";
+          const targetBlank = link.getAttribute("target") === "_blank";
+          const conversionUrl = targetBlank ? undefined : href;
+          event.preventDefault();
           try {
-            gtag_report_conversion();
+            gtag_report_conversion(conversionUrl);
             gtag("event", "contact_click", {
               contact_channel: channel,
               link_id: link.id || "",
               link_href: href
             });
+            if (targetBlank) {
+              window.open(href, "_blank", "noopener");
+            }
           } catch (e) {
-            // No-op if gtag is blocked
+            if (targetBlank) {
+              window.open(href, "_blank", "noopener");
+            } else {
+              window.location = href;
+            }
           }
-        }, { passive: true });
+          setTimeout(() => {
+            if (targetBlank) return;
+            if (window.location.href !== href) {
+              window.location = href;
+            }
+          }, 900);
+        });
       });
     }
     bindConversionTracking();
