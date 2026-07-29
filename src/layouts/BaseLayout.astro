@@ -132,8 +132,8 @@ const schemas = [
         </div>
         <div>
           <strong>Contacto comercial</strong>
-          <a href={whatsapp} data-contact="whatsapp">WhatsApp +56 9 8358 9813</a>
-          <a href="tel:+56983589813" data-contact="phone">Llamar +56 9 8358 9813</a>
+          <a href={whatsapp}>WhatsApp +56 9 8358 9813</a>
+          <a href="tel:+56983589813">Llamar +56 9 8358 9813</a>
         </div>
         <div>
           <strong>Información</strong>
@@ -148,17 +148,9 @@ const schemas = [
       </div>
     </footer>
     <div class="mobile-actions" aria-label="Opciones de contacto">
-      <a class="call" href="tel:+56983589813" data-contact="phone">Llamar</a>
-      <a class="whatsapp" href={whatsapp} data-contact="whatsapp">WhatsApp</a>
+      <a class="call" href="tel:+56983589813">Llamar</a>
+      <a class="whatsapp" href={whatsapp}>WhatsApp</a>
     </div>
-    <aside class="consent" data-consent hidden aria-labelledby="consent-title">
-      <strong id="consent-title">Medición de contacto</strong>
-      <p>Podemos medir únicamente los clics en llamada y WhatsApp. No solicitamos datos médicos.</p>
-      <div>
-        <button type="button" data-consent-reject>Ahora no</button>
-        <button type="button" class="accept" data-consent-accept>Aceptar</button>
-      </div>
-    </aside>
     <script is:inline>
       const menuButton = document.querySelector(".menu-button");
       const navigation = document.querySelector(".main-nav");
@@ -166,32 +158,6 @@ const schemas = [
         const open = menuButton.getAttribute("aria-expanded") === "true";
         menuButton.setAttribute("aria-expanded", String(!open));
         navigation?.classList.toggle("is-open", !open);
-      });
-
-      const consent = document.querySelector("[data-consent]");
-      const savedConsent = localStorage.getItem("contact-measurement-consent");
-      if (!savedConsent && consent) consent.hidden = false;
-
-      document.querySelector("[data-consent-reject]")?.addEventListener("click", () => {
-        localStorage.setItem("contact-measurement-consent", "denied");
-        consent.hidden = true;
-      });
-
-      document.querySelector("[data-consent-accept]")?.addEventListener("click", () => {
-        localStorage.setItem("contact-measurement-consent", "granted");
-        consent.hidden = true;
-        window.dispatchEvent(new CustomEvent("contactMeasurementGranted"));
-      });
-
-      document.querySelectorAll("[data-contact]").forEach((link) => {
-        link.addEventListener("click", () => {
-          if (localStorage.getItem("contact-measurement-consent") !== "granted") return;
-          window.dataLayer = window.dataLayer || [];
-          window.dataLayer.push({
-            event: "contact_click",
-            contact_method: link.dataset.contact,
-          });
-        });
       });
     </script>
   </body>

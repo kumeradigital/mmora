@@ -547,50 +547,6 @@ h3 {
   display: none;
 }
 
-.consent {
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  z-index: 100;
-  width: min(420px, calc(100% - 40px));
-  padding: 22px;
-  background: var(--white);
-  border: 1px solid var(--line);
-  box-shadow: var(--shadow);
-}
-
-.consent strong {
-  color: var(--navy);
-}
-
-.consent p {
-  margin: 6px 0 15px;
-  font-size: 15px;
-  line-height: 1.45;
-}
-
-.consent div {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-}
-
-.consent button {
-  min-height: 44px;
-  padding: 8px 15px;
-  border: 2px solid var(--navy);
-  background: var(--white);
-  color: var(--navy);
-  font: inherit;
-  font-size: 15px;
-  font-weight: 800;
-}
-
-.consent .accept {
-  background: var(--navy);
-  color: var(--white);
-}
-
 .page-hero {
   padding-block: 76px;
   background: var(--cream);
@@ -844,9 +800,6 @@ h3 {
     background: var(--green);
   }
 
-  .consent {
-    bottom: 84px;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
