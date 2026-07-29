@@ -1,0 +1,198 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  path?: string;
+}
+
+const {
+  title,
+  description,
+  path = "/",
+} = Astro.props;
+
+const canonical = new URL(path, "https://planrescatemovil.cl");
+const whatsapp =
+  "https://wa.me/56983589813?text=Hola%2C%20vi%20planrescatemovil.cl%20y%20quisiera%20recibir%20orientaci%C3%B3n%20comercial.";
+const schemas = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://planrescatemovil.cl/#website",
+    url: "https://planrescatemovil.cl/",
+    name: "Plan Rescate Móvil",
+    description: "Sitio de asesoría comercial independiente.",
+    inLanguage: "es-CL",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://planrescatemovil.cl/#organization",
+    name: "Plan Rescate Móvil",
+    url: "https://planrescatemovil.cl/",
+    description:
+      "Identidad comercial independiente dedicada a entregar orientación comercial.",
+    telephone: "+56983589813",
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: "+56983589813",
+      contactType: "sales",
+      availableLanguage: "Spanish",
+      areaServed: "CL",
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": "https://planrescatemovil.cl/#service",
+    name: "Asesoría comercial independiente",
+    description:
+      "Orientación comercial independiente para solicitar información sobre alternativas de protección y rescate móvil.",
+    provider: { "@id": "https://planrescatemovil.cl/#organization" },
+    areaServed: [
+      { "@type": "AdministrativeArea", name: "Región Metropolitana de Santiago" },
+      { "@type": "AdministrativeArea", name: "Región de Valparaíso" },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": `${canonical.href}#webpage`,
+    url: canonical.href,
+    name: title,
+    description,
+    isPartOf: { "@id": "https://planrescatemovil.cl/#website" },
+    about: { "@id": "https://planrescatemovil.cl/#service" },
+    inLanguage: "es-CL",
+  },
+];
+---
+
+<!doctype html>
+<html lang="es-CL">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#173c51" />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_CL" />
+    <meta property="og:site_name" content="Plan Rescate Móvil" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content="https://planrescatemovil.cl/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://planrescatemovil.cl/og.png" />
+    <title>{title}</title>
+    <script type="application/ld+json" set:html={JSON.stringify(schemas)} />
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <div class="independence-bar">
+      <div class="wrap">
+        <strong>Asesoría comercial independiente</strong>
+        <span>No somos el sitio oficial de Unidad Coronaria Móvil ni atendemos emergencias.</span>
+      </div>
+    </div>
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="brand" href="/" aria-label="Plan Rescate Móvil, inicio">
+          <span class="brand-mark" aria-hidden="true">PR</span>
+          <span>
+            <strong>Plan Rescate Móvil</strong>
+            <small>Orientación comercial</small>
+          </span>
+        </a>
+        <button class="menu-button" type="button" aria-expanded="false" aria-controls="nav-principal">
+          <span aria-hidden="true">☰</span> Menú
+        </button>
+        <nav id="nav-principal" class="main-nav" aria-label="Navegación principal">
+          <a href="/#orientacion">Orientación</a>
+          <a href="/#como-funciona">Cómo funciona</a>
+          <a href="/#preguntas">Preguntas</a>
+          <a href="/transparencia/">Transparencia</a>
+          <a class="nav-phone" href="tel:+56983589813">Llamar</a>
+        </nav>
+      </div>
+    </header>
+    <main id="contenido">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="wrap footer-grid">
+        <div>
+          <strong class="footer-title">Plan Rescate Móvil</strong>
+          <p>Asesoría comercial independiente para resolver dudas y solicitar información.</p>
+        </div>
+        <div>
+          <strong>Contacto comercial</strong>
+          <a href={whatsapp} data-contact="whatsapp">WhatsApp +56 9 8358 9813</a>
+          <a href="tel:+56983589813" data-contact="phone">Llamar +56 9 8358 9813</a>
+        </div>
+        <div>
+          <strong>Información</strong>
+          <a href="/transparencia/">Transparencia del sitio</a>
+          <a href="/privacidad/">Privacidad</a>
+          <a href="https://ucmchile.cl/" target="_blank" rel="noopener noreferrer">Sitio oficial de UCM</a>
+        </div>
+      </div>
+      <div class="wrap footer-legal">
+        <p><strong>No atendemos emergencias.</strong> En una emergencia médica llame al SAMU 131.</p>
+        <p>© {new Date().getFullYear()} Plan Rescate Móvil.</p>
+      </div>
+    </footer>
+    <div class="mobile-actions" aria-label="Opciones de contacto">
+      <a class="call" href="tel:+56983589813" data-contact="phone">Llamar</a>
+      <a class="whatsapp" href={whatsapp} data-contact="whatsapp">WhatsApp</a>
+    </div>
+    <aside class="consent" data-consent hidden aria-labelledby="consent-title">
+      <strong id="consent-title">Medición de contacto</strong>
+      <p>Podemos medir únicamente los clics en llamada y WhatsApp. No solicitamos datos médicos.</p>
+      <div>
+        <button type="button" data-consent-reject>Ahora no</button>
+        <button type="button" class="accept" data-consent-accept>Aceptar</button>
+      </div>
+    </aside>
+    <script is:inline>
+      const menuButton = document.querySelector(".menu-button");
+      const navigation = document.querySelector(".main-nav");
+      menuButton?.addEventListener("click", () => {
+        const open = menuButton.getAttribute("aria-expanded") === "true";
+        menuButton.setAttribute("aria-expanded", String(!open));
+        navigation?.classList.toggle("is-open", !open);
+      });
+
+      const consent = document.querySelector("[data-consent]");
+      const savedConsent = localStorage.getItem("contact-measurement-consent");
+      if (!savedConsent && consent) consent.hidden = false;
+
+      document.querySelector("[data-consent-reject]")?.addEventListener("click", () => {
+        localStorage.setItem("contact-measurement-consent", "denied");
+        consent.hidden = true;
+      });
+
+      document.querySelector("[data-consent-accept]")?.addEventListener("click", () => {
+        localStorage.setItem("contact-measurement-consent", "granted");
+        consent.hidden = true;
+        window.dispatchEvent(new CustomEvent("contactMeasurementGranted"));
+      });
+
+      document.querySelectorAll("[data-contact]").forEach((link) => {
+        link.addEventListener("click", () => {
+          if (localStorage.getItem("contact-measurement-consent") !== "granted") return;
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({
+            event: "contact_click",
+            contact_method: link.dataset.contact,
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

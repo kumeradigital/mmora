@@ -1,0 +1,156 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const whatsapp =
+  "https://wa.me/56983589813?text=Hola%2C%20vi%20planrescatemovil.cl%20y%20quisiera%20recibir%20orientaci%C3%B3n%20comercial.";
+---
+
+<BaseLayout
+  title="Plan Rescate Móvil | Orientación comercial independiente"
+  description="Orientación comercial independiente para solicitar información sobre alternativas de protección y rescate móvil en la Región Metropolitana y Valparaíso."
+>
+  <section class="promo-strip">
+    <div class="wrap">Converse directamente con una asesora y resuelva sus dudas con claridad</div>
+  </section>
+
+  <section class="hero">
+    <img
+      src="/familia-plan-rescate.png"
+      alt="Pareja adulta conversando tranquilamente en su hogar"
+      width="1536"
+      height="1024"
+      fetchpriority="high"
+    />
+    <div class="hero-overlay"></div>
+    <div class="wrap hero-content">
+      <p class="eyebrow">Plan Rescate Móvil</p>
+      <h1>Orientación clara para elegir una alternativa de protección y rescate móvil</h1>
+      <p>
+        Reciba información sencilla y acompañamiento comercial para saber qué preguntar antes de
+        solicitar una alternativa para usted o su familia.
+      </p>
+      <div class="hero-actions">
+        <a class="button primary" href={whatsapp} data-contact="whatsapp">Consultar por WhatsApp</a>
+        <a class="button secondary" href="tel:+56983589813" data-contact="phone">Llamar ahora</a>
+      </div>
+      <small>Contacto comercial: +56 9 8358 9813</small>
+    </div>
+  </section>
+
+  <section class="emergency-note" aria-label="Información para emergencias">
+    <div class="wrap">
+      <strong>¿Es una emergencia médica?</strong>
+      <span>Este sitio no recibe solicitudes de atención. Llame al SAMU <a href="tel:131">131</a>.</span>
+    </div>
+  </section>
+
+  <section id="orientacion" class="section intro-section">
+    <div class="wrap two-column">
+      <div>
+        <p class="section-label">Una decisión informada</p>
+        <h2>Orientación comercial, sin complicaciones</h2>
+        <p class="large-copy">
+          Plan Rescate Móvil es un sitio independiente. Su función es escuchar sus necesidades
+          generales, aclarar el proceso comercial y ayudarle a solicitar información.
+        </p>
+        <p>
+          No prestamos atención médica, no despachamos ambulancias y no reemplazamos los canales
+          oficiales del proveedor.
+        </p>
+      </div>
+      <aside class="contact-card">
+        <span>Atención comercial</span>
+        <strong>Región Metropolitana y Valparaíso</strong>
+        <p>La disponibilidad y la cobertura definitiva siempre deben ser confirmadas por el proveedor.</p>
+        <a href={whatsapp} data-contact="whatsapp">Hablar por WhatsApp</a>
+      </aside>
+    </div>
+  </section>
+
+  <section id="como-funciona" class="section process-section">
+    <div class="wrap">
+      <p class="section-label">Cómo funciona</p>
+      <h2>Tres pasos simples para recibir orientación</h2>
+      <div class="steps">
+        <article>
+          <span>01</span>
+          <h3>Cuéntenos qué busca</h3>
+          <p>Una conversación comercial breve, sin formularios ni solicitud de antecedentes médicos.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Resuelva sus dudas</h3>
+          <p>Le explicamos el proceso con palabras sencillas y le ayudamos a ordenar sus preguntas.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Solicite información</h3>
+          <p>Si desea continuar, le orientamos para avanzar con el proveedor correspondiente.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section clarity-section">
+    <div class="wrap clarity-grid">
+      <div class="clarity-heading">
+        <p class="section-label">Qué puede esperar</p>
+        <h2>Una conversación clara y sin presión</h2>
+      </div>
+      <ul class="check-list">
+        <li>Atención directa por teléfono o WhatsApp.</li>
+        <li>Explicaciones comerciales en lenguaje simple.</li>
+        <li>Orientación para RM y Valparaíso.</li>
+        <li>Sin cobros, pagos ni contratación dentro de este sitio.</li>
+        <li>Sin solicitud de diagnósticos o antecedentes clínicos.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="preguntas" class="section faq-section">
+    <div class="wrap faq-layout">
+      <div>
+        <p class="section-label">Preguntas frecuentes</p>
+        <h2>Información importante antes de contactar</h2>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary>¿Este es el sitio oficial de Unidad Coronaria Móvil?</summary>
+          <p>No. Plan Rescate Móvil es un sitio de asesoría comercial independiente.</p>
+        </details>
+        <details>
+          <summary>¿Puedo pedir una ambulancia en este número?</summary>
+          <p>No. Este contacto es exclusivamente comercial y no recibe solicitudes de emergencia.</p>
+        </details>
+        <details>
+          <summary>¿Me informarán precios o condiciones definitivas?</summary>
+          <p>
+            La asesora puede orientar el proceso. Precios, disponibilidad, cobertura, contratación y
+            condiciones finales deben ser confirmados por el proveedor.
+          </p>
+        </details>
+        <details>
+          <summary>¿Qué información debo entregar?</summary>
+          <p>
+            Para una primera conversación basta indicar que busca orientación y la comuna de interés.
+            No envíe diagnósticos, recetas ni antecedentes clínicos.
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <div class="wrap">
+      <div>
+        <p class="section-label">Contacto comercial</p>
+        <h2>¿Quiere resolver sus dudas?</h2>
+        <p>Converse directamente con una asesora independiente.</p>
+      </div>
+      <div class="final-actions">
+        <a class="button primary" href={whatsapp} data-contact="whatsapp">Consultar por WhatsApp</a>
+        <a class="text-call" href="tel:+56983589813" data-contact="phone">o llamar al +56 9 8358 9813</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
