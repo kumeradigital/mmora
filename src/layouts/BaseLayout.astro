@@ -58,6 +58,15 @@ const schemas = [
   },
   {
     "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "https://planrescatemovil.cl/#asesora",
+    name: "María Inés Mora",
+    jobTitle: "Asesora comercial",
+    telephone: "+56983589813",
+    worksFor: { "@id": "https://planrescatemovil.cl/#organization" },
+  },
+  {
+    "@context": "https://schema.org",
     "@type": "WebPage",
     "@id": `${canonical.href}#webpage`,
     url: canonical.href,
@@ -132,6 +141,7 @@ const schemas = [
         </div>
         <div>
           <strong>Contacto comercial</strong>
+          <span>María Inés Mora · Asesora comercial</span>
           <a href={whatsapp}>WhatsApp +56 9 8358 9813</a>
           <a href="tel:+56983589813">Llamar +56 9 8358 9813</a>
         </div>

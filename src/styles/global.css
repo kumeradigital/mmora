@@ -355,6 +355,13 @@ h3 {
   text-transform: uppercase;
 }
 
+.contact-card small {
+  display: block;
+  margin-top: 9px;
+  color: #dbe6e9;
+  font-size: 15px;
+}
+
 .contact-card strong {
   display: block;
   margin: 10px 0;
