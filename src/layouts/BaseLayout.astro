@@ -98,6 +98,20 @@ const schemas = [
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content="https://planrescatemovil.cl/og.png" />
+    <!-- Google tag (gtag.js) -->
+    <script
+      is:inline
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=AW-18369667056"
+    ></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "AW-18369667056");
+    </script>
     <title>{title}</title>
     <script type="application/ld+json" set:html={JSON.stringify(schemas)} />
   </head>
